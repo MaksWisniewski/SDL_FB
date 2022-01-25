@@ -1,4 +1,4 @@
-OBJECTS = Engine.c Main.c
+OBJECTS = Game_window.c Main.c
 
 OBJECT_NAME = FlappyBird
 

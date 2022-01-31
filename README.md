@@ -20,7 +20,7 @@ gcc -o myprogram myprogram.c `sdl2-config --cflags --libs`
 
 
 ### Eventually, install
-Ubuntu 20.04, all available features enabled:
+*(Ubuntu 20.04, all available features enabled:)*
 
     sudo apt-get install build-essential git make cmake autoconf automake \
     libtool pkg-config libasound2-dev libpulse-dev libaudio-dev libjack-dev \

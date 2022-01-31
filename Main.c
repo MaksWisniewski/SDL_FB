@@ -62,6 +62,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // Clear the windows
+    SDL_RenderClear(rend);
+
+    // Draw the image to the window
+    SDL_RenderCopy(rend, tex, NULL, NULL);
+    SDL_RenderPresent(rend);
     // The window is open: could enter program loop here (see SDL_PollEvent())
 
     SDL_Delay(3000); // Pause execution for 3000 milliseconds, for example

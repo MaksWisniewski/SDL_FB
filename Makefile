@@ -1,6 +1,8 @@
-OBJECTS = Game_window.c Main.c
+OBJECTS = Window.c Main.c
 
-OBJECT_NAME = FlappyBird
+DEPENDENCIES = Window.h Main.h
+
+OBJECT_NAME = gra
 
 CC = gcc
 
@@ -8,5 +10,5 @@ COMPILER_FLAGS = -std=c11 -xc
 
 LINKER_FLAGS = `sdl2-config --cflags --libs`
 
-all : $(OBJECTS)
+all : $(OBJECTS) $(DEPENDENCIES)
 	$(CC) $(OBJECTS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJECT_NAME)

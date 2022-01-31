@@ -19,6 +19,11 @@ gcc -o myprogram myprogram.c `sdl2-config --cflags --libs`
 ```
 
 
+### Importante
+```bash
+sudo apt install libsdl2-image-dev
+```
+
 ### Eventually, install
 *(Ubuntu 20.04, all available features enabled:)*
 

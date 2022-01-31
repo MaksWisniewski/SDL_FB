@@ -1,14 +1,16 @@
-OBJECTS = Window.c Main.c
+# Simple makefile
 
-DEPENDENCIES = Window.h Main.h
+OBJECTS = Main.c
 
-OBJECT_NAME = gra
+HDRS = 
+
+OBJ_NAME = game
 
 CC = gcc
 
-COMPILER_FLAGS = -std=c11 -xc
+C_FLAGS = -std=c11 -xc -lm -Wall -Wextra
 
-LINKER_FLAGS = `sdl2-config --cflags --libs`
+L_FLAGS = `sdl2-config --cflags --libs`
 
-all : $(OBJECTS) $(DEPENDENCIES)
-	$(CC) $(OBJECTS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJECT_NAME)
+all : $(OBJECTS) $(HDRS)
+	$(CC) $(OBJECTS) $(C_FLAGS) $(L_FLAGS) -o $(OBJ_NAME)

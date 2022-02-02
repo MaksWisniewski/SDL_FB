@@ -21,7 +21,7 @@ gcc -o myprogram myprogram.c `sdl2-config --cflags --libs`
 
 ### Importante
 ```bash
-sudo apt install libsdl2-image-dev
+sudo apt install libsdl2-image-dev libsdl2-ttf-dev libsdl2-ttf-2.0.0-0
 ```
 
 ### Eventually, install

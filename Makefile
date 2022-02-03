@@ -8,7 +8,7 @@ OBJ_NAME = game
 
 CC = gcc
 
-C_FLAGS = `sdl2-config --cflags` -lSDL2_image -lSDL2_ttf -std=c11 -xc -lm -Wall
+C_FLAGS = `sdl2-config --cflags` -std=c11 -xc -Wall
 
 L_FLAGS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lm
 

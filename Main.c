@@ -16,6 +16,8 @@ int main(int argc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO |
            SDL_INIT_TIMER); // Initialize SDL2, graphics and timer system
 
+
+
   // structure containg metadata bout background
   SDL_Rect background_rect;
   background_rect.x = 0;

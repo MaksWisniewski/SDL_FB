@@ -6,8 +6,10 @@
 #include <math.h>
 #include <stdio.h>
 
-#define WIDTH 1280
-#define HEIGHT 720
+#include "bird.h"
+
+const int WIDTH = 1280;
+const int HEIGHT = 720;
 
 int main(int argc, char *argv[]) {
   // Declare a pointer
@@ -16,7 +18,8 @@ int main(int argc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO |
            SDL_INIT_TIMER); // Initialize SDL2, graphics and timer system
 
-
+  Bird *ptaszek;
+  birdConstructor(ptaszek);
 
   // structure containg metadata bout background
   SDL_Rect background_rect;
@@ -28,15 +31,11 @@ int main(int argc, char *argv[]) {
   // structure containg metadata bout ground
   SDL_Rect ground_rect;
   ground_rect.x = 0;
-  ground_rect.y = HEIGHT-40;
+  ground_rect.y = HEIGHT - 40;
   ground_rect.w = WIDTH;
   ground_rect.h = 40;
 
-  SDL_Rect bird_rect;
-  bird_rect.x = WIDTH/2 - 40;
-  bird_rect.y = HEIGHT/2;
-  bird_rect.w = 40;
-  bird_rect.h = 40;
+  SDL_Rect bird_rect = ptaszek->bounds;
 
   // Create an application window with the following settings:
   window = SDL_CreateWindow("Flappy_bird",          // window title
@@ -92,9 +91,9 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-
   // Load the image into the hardware's memory
-  SDL_Texture *tex_background = SDL_CreateTextureFromSurface(rend, surface_background);
+  SDL_Texture *tex_background =
+      SDL_CreateTextureFromSurface(rend, surface_background);
   SDL_FreeSurface(surface_background);
   if (tex_background == NULL) {
     printf("error creating texuture %s\n", SDL_GetError());

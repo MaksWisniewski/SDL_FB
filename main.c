@@ -5,6 +5,11 @@
 #include <SDL2/SDL_timer.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
+
+int main(int argc, char **argv) {
+    srand(time(NULL));
+}

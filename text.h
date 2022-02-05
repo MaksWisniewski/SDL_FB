@@ -12,13 +12,13 @@ extern const int WIDTH;
 extern const int MAX_TEXT_L;
 
 typedef struct {
-    char Text[200];
+    char tab[200];
     SDL_Surface* Surface;
     SDL_Rect Bounds;
     SDL_Color Color;
 } Text;
 
-void textSet(Text* t);
+
 bool textConstructor(Text* t, char txt[200], TTF_Font* font);
 void textUpdate(Text* t, TTF_Font* font, int posY);
 

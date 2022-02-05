@@ -9,28 +9,23 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-extern const int HEIGHT;
-extern const int WIDTH;
-
-double limit(double x, double limit);
+extern const int SCREEN_HEIGHT;
+extern const int SCREEN_WIDTH;
 
 typedef struct {
-    float x, y;
-} Vector;
-
-typedef struct {
-    SDL_Rect bounds;
-    Vector position;
     SDL_Texture *img;
+    SDL_Rect Bounds;
+    double self_x;
+    double self_y;
+    double velocity;
+    double gravity;
+    double lift;
+    double time_sinceJump;
     bool isJump;
-    float velocity;
-    float gravity;
-    float lift;
-    float time_afterJump;
 } Bird;
 
+void birdConstructor(Bird *x);
 bool birdUpdate(Bird *x, double dt);
 void birdJump(Bird *x);
-void birdConstructor(Bird *x);
 
 #endif

@@ -1,10 +1,13 @@
 #include "engine.h"
 #include "bird.h"
 #include "pipe.h"
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_events.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_keycode.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_timer.h>
+#include <SDL2/SDL_video.h>
 #include <stdbool.h>
 #include <sys/types.h>
 
@@ -141,4 +144,28 @@ void renderFrame(Engine *e) {
     }
     
     SDL_RenderPresent(e->renderer);
+}
+
+void closeGame(Engine *e) {
+    SDL_DestroyTexture(e->bird.img);
+    e->bird.img = NULL;
+    SDL_DestroyTexture(e->pipe_texture);
+    e->pipe_texture = NULL;
+    SDL_DestroyRenderer(e->renderer);
+    e->renderer = NULL;
+    SDL_DestroyWindow(e->window);
+
+    IMG_Quit();
+    SDL_Quit();
+}
+
+void resetGame(Engine *e) {
+    birdConstructor(&e->bird);
+    e->since_time = 0;
+    e->current_time = SDL_GetPerformanceCounter();
+    e->pipe_index = 0;
+    e->pipeGen_time = 0;
+    for(int i = 0; i < noPipes; i++) {
+        pipeConstructor(&e->pipes[i]);
+    }
 }

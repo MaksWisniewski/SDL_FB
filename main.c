@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
-extern const int noPipes;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 720;
+const int noPipes = 6;
 
 int main(int argc, char **argv) {
     srand(time(NULL));

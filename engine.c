@@ -3,6 +3,9 @@
 #include "pipe.h"
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_keycode.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_timer.h>
+#include <stdbool.h>
 #include <sys/types.h>
 
 // returns true if there is intersection
@@ -100,3 +103,42 @@ void input(Engine *e, SDL_Event *event) {
     }
 }
 
+void updateGame(Engine *e) {
+    // calculate delta time
+    e->since_time = e->current_time;
+    e->current_time = SDL_GetPerformanceCounter();
+
+    double dt = ((e->current_time - e->since_time) * 1000 / (double) SDL_GetPerformanceFrequency()) / 1000;
+    int total_time = SDL_GetTicks();
+
+    if(e->state == PLAYING) {
+
+        if(e->pipe_index < noPipes && total_time > e->pipeGen_time + 2000) {
+        
+            if(!e->pipes[e->pipe_index].isActive) {
+                e->pipes[e->pipe_index].isActive = true;
+                e->pipe_index++;
+                e->pipeGen_time = total_time;
+            }
+            e->pipe_index %= noPipes;
+        }
+    }
+}
+
+void renderFrame(Engine *e) {
+    SDL_RenderClear(e->renderer);
+
+    if(e->state == PLAYING || e->state == LOST_GAME) {
+        for(int i = 0; i < noPipes; i++) {
+            if(e->pipes[i].isActive == true) {
+                SDL_RenderCopyEx(e->renderer, e->pipe_texture, NULL, &e->pipes[i].topBounds, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(e->renderer, e->pipe_texture, NULL, &e->pipes[i].botBounds, 0, NULL, SDL_FLIP_VERTICAL);
+            }
+        }
+
+        SDL_RenderCopy(e->renderer, e->bird.img, NULL, &e->bird.Bounds);
+
+    }
+    
+    SDL_RenderPresent(e->renderer);
+}

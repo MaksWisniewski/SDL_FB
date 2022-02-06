@@ -3,6 +3,7 @@
 
 #include "bird.h"
 #include "pipe.h"
+#include <math.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -12,6 +13,7 @@
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;

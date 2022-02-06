@@ -8,6 +8,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
+#include <SDL2/SDL_rect.h>
 #include <stdbool.h>
 
 const int SCREEN_WIDTH = 1280;
@@ -41,6 +42,6 @@ void closeGame(Engine *e);
 void input(Engine *e, SDL_Event *event);
 void updateGame(Engine *e);
 void renderFrame(Engine *e);
-SDL_Texture *loadTexture(char *path, Engine *e);
+SDL_Texture* loadTexture(char *path, Engine *e);
 
 #endif

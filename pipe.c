@@ -3,7 +3,7 @@
 
 void newPipe(Pipe *p) {
     p->self_x = SCREEN_WIDTH;
-    int d = rand()%(SCREEN_HEIGHT-150)+40;
+    int d = rand()%(SCREEN_HEIGHT-200)+100;
 
     p->botHeight = SCREEN_HEIGHT - (d + p->free / 2);
     p->topHeight = d - p->free / 2;
@@ -14,7 +14,7 @@ void newPipe(Pipe *p) {
     p->botBounds.h = p->self_height;
 
     p->topBounds.x = p->self_x;
-    p->topBounds.y = d - p->free / 2 + p->self_height;
+    p->topBounds.y = d - p->free / 2 - p->self_height;
     p->topBounds.w = p->self_width;
     p->topBounds.h = p->self_height;
 }
@@ -22,7 +22,7 @@ void newPipe(Pipe *p) {
 void pipeConstructor(Pipe *p) {
     p->self_width = 70;
     p->self_height = 300;
-    p->velocity = 10;
+    p->velocity = 50;
     p->isActive = false;
     p->free = 200;
 

@@ -116,7 +116,7 @@ void updateGame(Engine *e) {
 
     if(e->state == PLAYING) {
 
-        if(e->pipe_index < noPipes && total_time > e->pipeGen_time + 2000) {
+        if(e->pipe_index < noPipes && total_time > e->pipeGen_time + 4000) {
         
             if(e->pipes[e->pipe_index].isActive == false) {
                 e->pipes[e->pipe_index].isActive = true;

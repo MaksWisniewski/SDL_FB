@@ -2,13 +2,13 @@
 #include <stdbool.h>
 
 void birdConstructor(Bird *x) {
-    x->Bounds.w = x->Bounds.y = 50;
+    x->Bounds.w = x->Bounds.h = 50;
     x->self_x = x->Bounds.x = SCREEN_WIDTH / 3;
     x->self_y = x->Bounds.y = SCREEN_HEIGHT / 2;
 
-    x->gravity = 0.2;
+    x->gravity = 10;
     x->velocity = 0;
-    x->lift = -40;
+    x->lift = -350;
     x->time_sinceJump = 0;
     x->isJump = false;
 }
@@ -22,12 +22,12 @@ bool birdUpdate(Bird *x, double dt) {
     x->time_sinceJump += dt;
 
     if(x->isJump == true && x->time_sinceJump >= 0.25) {
-        x->velocity += x->lift;
+        x->velocity = x->lift;
         x->time_sinceJump = 0;
         x->isJump = false;
     }
 
-    x->self_y = x->velocity * dt;
+    x->self_y += x->velocity * dt;
 
     if(x->self_y + x->Bounds.h / 2 > SCREEN_HEIGHT) {
         x->self_y = SCREEN_HEIGHT - x->Bounds.h / 2;

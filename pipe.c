@@ -22,7 +22,7 @@ void newPipe(Pipe *p) {
 void pipeConstructor(Pipe *p) {
     p->self_width = 70;
     p->self_height = 300;
-    p->velocity = 50;
+    p->velocity = 120;
     p->isActive = false;
     p->free = 200;
 

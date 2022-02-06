@@ -5,15 +5,16 @@
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_keycode.h>
+#include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
 #include <stdbool.h>
-#include <sys/types.h>
 
 // returns true if there is intersection
 bool collisionDetection(Bird *b, Pipe *p) {
-    return SDL_IntersectRect(&p->topBounds, &b->Bounds, NULL) || SDL_IntersectRect(&p->botBounds, &b->Bounds, NULL);
+    SDL_Rect *prostokat = malloc(sizeof(SDL_Rect));
+    return SDL_IntersectRect(&p->topBounds, &b->Bounds, prostokat) || SDL_IntersectRect(&p->botBounds, &b->Bounds, prostokat);
 }
 
 SDL_Texture* loadTexture(char* path, Engine* e) {
@@ -118,7 +119,7 @@ void updateGame(Engine *e) {
 
     if(e->state == PLAYING) {
 
-        if(e->pipe_index < noPipes && total_time > e->pipeGen_time + 4000) {
+        if(e->pipe_index < noPipes && total_time > e->pipeGen_time + 2200) {
         
             if(e->pipes[e->pipe_index].isActive == false) {
                 e->pipes[e->pipe_index].isActive = true;
@@ -143,9 +144,6 @@ void updateGame(Engine *e) {
 void renderFrame(Engine *e) {
     SDL_RenderClear(e->renderer);
 
-    if(e->state == START_GAME) {
-        SDL_RenderCopy(e->renderer, e->bird.img, NULL, &e->bird.Bounds);
-    }
     if(e->state == PLAYING || e->state == LOST_GAME) {
         for(int i = 0; i < noPipes; i++) {
             if(e->pipes[i].isActive == true) {

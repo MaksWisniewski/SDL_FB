@@ -15,9 +15,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 720;
-const int noPipes = 6;
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+extern const int noPipes;
 
 typedef enum game_state{
     START_GAME,
@@ -36,7 +36,7 @@ typedef struct {
     long long current_time;
     long long since_time;
     long long pipeGen_time;
-    size_t pipe_index;
+    int pipe_index;
 } Engine;
 
 bool collisionDetection(Bird *b, Pipe *p);

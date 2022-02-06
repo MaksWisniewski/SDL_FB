@@ -1,6 +1,9 @@
 #include "engine.h"
 #include "bird.h"
 #include "pipe.h"
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_keycode.h>
+#include <sys/types.h>
 
 // returns true if there is intersection
 bool collisionDetection(Bird *b, Pipe *p) {
@@ -43,7 +46,7 @@ bool initGame(Engine *e) {
     SDL_SetRenderDrawColor(e->renderer, 0x00, 0x00, 0x00, 0x00);
     e->since_time = 0;
     e->current_time = 0;
-    e->pipe_index;
+    e->pipe_index = 0;
     e->pipeGen_time = 0;
     e->state = START_GAME;
 
@@ -54,3 +57,46 @@ bool initGame(Engine *e) {
     }
     return true;
 }
+
+bool loadMedia(Engine *e) {
+    e->bird.img = loadTexture("img/bird.png", e);
+    if(e->bird.img == NULL) 
+        return false;
+    e->pipe_texture = loadTexture("img/pipe.png", e);
+    if(e->pipe_texture == NULL) 
+        return false;
+    return true;
+}
+
+void input(Engine *e, SDL_Event *event) {
+    while(SDL_PollEvent(event) != 0) {
+    
+        if(event->type == SDL_QUIT)
+            e->state = QUIT_GAME;
+    
+        else if(event->type == SDL_KEYDOWN)
+            switch(event->key.keysym.sym) {
+                case SDLK_SPACE:
+                    birdJump(&e->bird);
+                    break;
+                case SDLK_ESCAPE:
+                    if(e->state == LOST_GAME)
+                        e->state = QUIT_GAME;
+                    break;
+                case SDLK_RETURN:
+                    if(e->state == START_GAME)
+                        e->state = PLAYING;
+                    if(e->state == LOST_GAME)
+                        e->state = PLAYING;
+                    break;
+            }
+
+        else if(event->type == SDL_KEYUP) 
+            switch (event->key.keysym.sym) {
+                case SDLK_SPACE:
+                    e->bird.isJump = false;
+                    break;
+            }    
+    }
+}
+

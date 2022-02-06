@@ -20,6 +20,7 @@ const int noPipes = 8;
 
 int main(int argc, char **argv) {
     srand(time(NULL));
+    printf("Aby rozpocząć grę wciśnij enter. \n W celu wykonania skoku spacje.  \n");
 
     Engine silnikGry;
     if(!initGame(&silnikGry)) {

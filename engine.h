@@ -46,6 +46,7 @@ void closeGame(Engine *e);
 void input(Engine *e, SDL_Event *event);
 void updateGame(Engine *e);
 void renderFrame(Engine *e);
+void resetGame(Engine *e);
 SDL_Texture* loadTexture(char *path, Engine *e);
 
 #endif

@@ -8,7 +8,7 @@ void birdConstructor(Bird *x) {
 
     x->gravity = 0.2;
     x->velocity = 0;
-    x->lift = -4;
+    x->lift = -40;
     x->time_sinceJump = 0;
     x->isJump = false;
 }

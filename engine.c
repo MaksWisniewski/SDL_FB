@@ -77,10 +77,9 @@ bool loadMedia(Engine *e) {
 void input(Engine *e, SDL_Event *event) {
     while(SDL_PollEvent(event) != 0) {
     
-        if(event->type == SDL_QUIT)
+        if(event->type == SDL_QUIT) {
             e->state = QUIT_GAME;
-    
-        else if(event->type == SDL_KEYDOWN)
+        } else if(event->type == SDL_KEYDOWN) {
             switch(event->key.keysym.sym) {
                 case SDLK_SPACE:
                     birdJump(&e->bird);
@@ -92,10 +91,13 @@ void input(Engine *e, SDL_Event *event) {
                 case SDLK_RETURN:
                     if(e->state == START_GAME)
                         e->state = PLAYING;
-                    if(e->state == LOST_GAME)
+                    if(e->state == LOST_GAME) {
+                        resetGame(e);
                         e->state = PLAYING;
+                    }
                     break;
             }
+        }
 
         else if(event->type == SDL_KEYUP) 
             switch (event->key.keysym.sym) {
@@ -141,6 +143,9 @@ void updateGame(Engine *e) {
 void renderFrame(Engine *e) {
     SDL_RenderClear(e->renderer);
 
+    if(e->state == START_GAME) {
+        SDL_RenderCopy(e->renderer, e->bird.img, NULL, &e->bird.Bounds);
+    }
     if(e->state == PLAYING || e->state == LOST_GAME) {
         for(int i = 0; i < noPipes; i++) {
             if(e->pipes[i].isActive == true) {
@@ -150,7 +155,6 @@ void renderFrame(Engine *e) {
         }
 
         SDL_RenderCopy(e->renderer, e->bird.img, NULL, &e->bird.Bounds);
-
     }
     
     SDL_RenderPresent(e->renderer);

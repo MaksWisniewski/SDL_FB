@@ -118,13 +118,23 @@ void updateGame(Engine *e) {
 
         if(e->pipe_index < noPipes && total_time > e->pipeGen_time + 2000) {
         
-            if(!e->pipes[e->pipe_index].isActive) {
+            if(e->pipes[e->pipe_index].isActive == false) {
                 e->pipes[e->pipe_index].isActive = true;
                 e->pipe_index++;
                 e->pipeGen_time = total_time;
             }
             e->pipe_index %= noPipes;
         }
+        
+        if(birdUpdate(&e->bird, dt))
+            e->state = LOST_GAME;
+
+        for(int i = 0; i < noPipes; i++) {
+            pipeUpdate(&e->pipes[i], dt);
+            
+            if(collisionDetection(&e->bird, &e->pipes[i]))
+                e->state = LOST_GAME;
+        }   
     }
 }
 

@@ -4,10 +4,10 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 
-void tekstUpdate(Tekst *S, TTF_Font *f, int pos) {
-    if(S->A != NULL) {
+void tekstUpdate(struct Tekst *S, TTF_Font *f, int pos) {
+    if(S->teksSurface != NULL) {
         SDL_FreeSurface(S->teksSurface);
-        S->A = NULL;
+        S->teksSurface = NULL;
     }
     S->teksSurface = TTF_RenderText_Blended_Wrapped(f, S->A, S->tekstColor, 640);
     if(S->teksSurface == NULL) {
@@ -21,14 +21,15 @@ void tekstUpdate(Tekst *S, TTF_Font *f, int pos) {
     S->Bounds.y = pos;
 }
 
-bool tekstConstructor(Tekst *S, char A[50], TTF_Font *f) {
+bool tekstConstructor(struct Tekst *S, char A[], TTF_Font *f) {
     strcpy(S->A, A);
 
     S->tekstColor.r = 255;
     S->tekstColor.g = 255;
     S->tekstColor.b = 255;
     S->tekstColor.a = 255;
-    S->teksSurface = TTF_RenderText_Blended_Wrapped(f, S->A, S->tekstColor, 640)
+    
+    S->teksSurface = TTF_RenderText_Blended_Wrapped(f, S->A, S->tekstColor, 640);
     if(S->teksSurface == NULL) {
                 printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
                 return false;
@@ -38,4 +39,5 @@ bool tekstConstructor(Tekst *S, char A[50], TTF_Font *f) {
     }
     S->Bounds.x = 0;
     S->Bounds.y = 0;
+    return true;
 }

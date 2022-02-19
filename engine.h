@@ -13,6 +13,7 @@
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
 #include <SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -33,6 +34,7 @@ typedef struct {
     SDL_Renderer *renderer;
     Mix_Chunk *musicEffect;
     Mix_Music *sound;
+    TTF_Font *mFont;
     SDL_Window *window;
     GAME_STATE state;
     Bird bird;

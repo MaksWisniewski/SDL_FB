@@ -15,13 +15,13 @@ text.o : text.c text.h
 
 pipe.o : pipe.c pipe.h
 
-engine.o : engine.c engine.h bird.c bird.h pipe.c pipe.h
+engine.o : engine.c engine.h bird.c bird.h pipe.c pipe.h text.o text.h
 	$(CC) engine.c $(C_FLAGS) $(L_FLAGS) -c -o engine.o
 
-main.o : main.c
+main.o : main.c engine.c engine.o
 	$(CC) main.c $(C_FLAGS) $(L_FLAGS) -c -o main.o
 
-all : bird.o engine.o pipe.o main.o
+all : bird.o engine.o pipe.o main.o text.o
 	$(CC) bird.o engine.o pipe.o main.o $(C_FLAGS) $(L_FLAGS) -o game
 
 clean :

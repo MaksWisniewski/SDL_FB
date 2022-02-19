@@ -1,6 +1,8 @@
 #include "engine.h"
 #include "bird.h"
 #include "pipe.h"
+#include "text.h"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_image.h>
@@ -8,6 +10,7 @@
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_timer.h>
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_video.h>
 #include <SDL_mixer.h>
 #include <stdbool.h>
@@ -43,7 +46,9 @@ bool initGame(Engine *e) {
     e->musicEffect = Mix_LoadWAV("sounds/death_sound.ogg");
     e->window = SDL_CreateWindow("Flappy bird", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
     SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+   
     Mix_PlayMusic(e->sound, -1);
+
     if(e->window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return false;
@@ -54,8 +59,12 @@ bool initGame(Engine *e) {
             printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
             return false;
     }
-    
-    // SDL_SetRenderDrawColor(e->renderer, 0x00, 0x00, 0x00, 0x00);
+    if(TTF_Init() == -1) {
+        printf("TTF_SDL could not initialize: TTF_Error: %s\n", TTF_GetError());
+        return false;
+    }
+
+
     e->since_time = 0;
     e->current_time = 0;
     e->pipe_index = 0;
@@ -63,6 +72,19 @@ bool initGame(Engine *e) {
     e->state = START_GAME;
 
     birdConstructor(&e->bird);
+
+    e->mFont = TTF_OpenFont("img/Bullpen3D.ttf", 24);
+    if(e->mFont == NULL) {
+        printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());    
+        return false;
+    }
+
+    SDL_SetRenderDrawColor(e->renderer, 0x00, 0x00, 0x00, 0x00);
+    
+    struct Tekst *pismo;
+    tekstConstructor(pismo, "nacisnij enter aby rozpaczac", e->mFont);
+    tekstUpdate(pismo, e->mFont, SCREEN_WIDTH/2);
+    SDL_Delay(100);
 
     for(int i = 0; i < noPipes; i++) {
         pipeConstructor(&e->pipes[i]);
@@ -185,6 +207,7 @@ void closeGame(Engine *e) {
     Mix_FreeChunk(e->musicEffect);
     Mix_FreeMusic(e->sound);
     IMG_Quit();
+    TTF_Quit();
     Mix_CloseAudio();
     SDL_Quit();
 }

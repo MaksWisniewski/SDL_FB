@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
         else {
             SDL_Event imprezka; /// :D
 
+            
             while(silnikGry.state != QUIT_GAME) {
                 input(&silnikGry, &imprezka);
 
@@ -39,6 +40,7 @@ int main(int argc, char **argv) {
 
                 renderFrame(&silnikGry);
             }
+
         }
     }
     closeGame(&silnikGry);

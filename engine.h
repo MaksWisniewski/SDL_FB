@@ -12,6 +12,7 @@
 #include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
+#include <SDL_mixer.h>
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -30,6 +31,7 @@ typedef struct {
     SDL_Texture *pipe_texture;
     SDL_Texture *background_pic;
     SDL_Renderer *renderer;
+    Mix_Chunk *musicEffect;
     SDL_Window *window;
     GAME_STATE state;
     Bird bird;

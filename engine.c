@@ -9,6 +9,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
+#include <SDL_mixer.h>
 #include <stdbool.h>
 
 // returns true if there is intersection
@@ -35,7 +36,10 @@ SDL_Texture* loadTexture(char* path, Engine* e) {
 }
 
 bool initGame(Engine *e) {
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER); 
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO); 
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+    e->musicEffect = Mix_LoadWAV("sounds/death_sound.ogg");
     e->window = SDL_CreateWindow("Flappy bird", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
     SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     
@@ -132,14 +136,19 @@ void updateGame(Engine *e) {
             e->pipe_index %= noPipes;
         }
         
-        if(birdUpdate(&e->bird, dt))
+        if(birdUpdate(&e->bird, dt)) {
+            Mix_PlayChannel(-1, e->musicEffect, 0);    
             e->state = LOST_GAME;
+        }
 
         for(int i = 0; i < noPipes; i++) {
             pipeUpdate(&e->pipes[i], dt);
             
-            if(collisionDetection(&e->bird, &e->pipes[i]))
+            if(collisionDetection(&e->bird, &e->pipes[i])) {
                 e->state = LOST_GAME;
+                Mix_PlayChannel(-1, e->musicEffect, 0);    
+            }
+            
         }   
     }
 }
@@ -172,6 +181,7 @@ void closeGame(Engine *e) {
     e->renderer = NULL;
     SDL_DestroyWindow(e->window);
 
+    Mix_FreeChunk(e->musicEffect);
     IMG_Quit();
     SDL_Quit();
 }

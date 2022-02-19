@@ -28,6 +28,7 @@ typedef enum game_state{
 
 typedef struct {
     SDL_Texture *pipe_texture;
+    SDL_Texture *background_pic;
     SDL_Renderer *renderer;
     SDL_Window *window;
     GAME_STATE state;

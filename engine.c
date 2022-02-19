@@ -50,7 +50,7 @@ bool initGame(Engine *e) {
             return false;
     }
     
-    SDL_SetRenderDrawColor(e->renderer, 0x00, 0x00, 0x00, 0x00);
+    // SDL_SetRenderDrawColor(e->renderer, 0x00, 0x00, 0x00, 0x00);
     e->since_time = 0;
     e->current_time = 0;
     e->pipe_index = 0;
@@ -71,6 +71,9 @@ bool loadMedia(Engine *e) {
         return false;
     e->pipe_texture = loadTexture("img/pipe.png", e);
     if(e->pipe_texture == NULL) 
+        return false;
+    e->background_pic = loadTexture("img/background.png", e);
+    if(e->background_pic == NULL)
         return false;
     return true;
 }
@@ -143,6 +146,7 @@ void updateGame(Engine *e) {
 
 void renderFrame(Engine *e) {
     SDL_RenderClear(e->renderer);
+    SDL_RenderCopy(e->renderer, e->background_pic, NULL, NULL);
 
     if(e->state == PLAYING || e->state == LOST_GAME) {
         for(int i = 0; i < noPipes; i++) {
@@ -154,7 +158,6 @@ void renderFrame(Engine *e) {
 
         SDL_RenderCopy(e->renderer, e->bird.img, NULL, &e->bird.Bounds);
     }
-    
     SDL_RenderPresent(e->renderer);
 }
 
@@ -162,6 +165,8 @@ void closeGame(Engine *e) {
     SDL_DestroyTexture(e->bird.img);
     e->bird.img = NULL;
     SDL_DestroyTexture(e->pipe_texture);
+    e->pipe_texture = NULL;
+    SDL_DestroyTexture(e->background_pic);
     e->pipe_texture = NULL;
     SDL_DestroyRenderer(e->renderer);
     e->renderer = NULL;

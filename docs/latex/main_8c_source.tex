@@ -1,0 +1,52 @@
+\hypertarget{main_8c_source}{}\doxysection{main.\+c}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}engine.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00003}00003 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00004}00004 \textcolor{preprocessor}{\#include <SDL2/SDL\_events.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00005}00005 \textcolor{preprocessor}{\#include <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00006}00006 \textcolor{preprocessor}{\#include <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}00007 \textcolor{preprocessor}{\#include <SDL2/SDL\_keycode.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008 \textcolor{preprocessor}{\#include <SDL2/SDL\_rect.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009 \textcolor{preprocessor}{\#include <SDL2/SDL\_render.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010 \textcolor{preprocessor}{\#include <SDL2/SDL\_surface.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011 \textcolor{preprocessor}{\#include <SDL2/SDL\_timer.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00012}00012 \textcolor{preprocessor}{\#include <SDL2/SDL\_video.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00013}00013 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00014}00014 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00015}00015 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00017}00017 \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_WIDTH = 640;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}00018 \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_HEIGHT = 480;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019 \textcolor{keyword}{const} \textcolor{keywordtype}{int} noPipes = 8;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00021}00021 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022     srand(time(NULL));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00023}00023     printf(\textcolor{stringliteral}{"{}Aby rozpocząć grę wciśnij enter. \(\backslash\)n W celu wykonania skoku spacje.  \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00025}00025     \mbox{\hyperlink{structEngine}{Engine}} silnikGry;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00026}00026     \textcolor{keywordflow}{if}(!initGame(\&silnikGry)) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00027}00027         printf(\textcolor{stringliteral}{"{}failed to init!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00028}00028     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00029}00029     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00030}00030         \textcolor{keywordflow}{if}(!loadMedia(\&silnikGry))}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00031}00031             printf(\textcolor{stringliteral}{"{}failed to init!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00032}00032         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00033}00033             SDL\_Event imprezka; }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00035}00035             }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00036}00036             \textcolor{keywordflow}{while}(silnikGry.state != QUIT\_GAME) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00037}00037                 input(\&silnikGry, \&imprezka);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}00039                 updateGame(\&silnikGry);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041                 renderFrame(\&silnikGry);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}00042             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00044}00044         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00045}00045     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00046}00046     closeGame(\&silnikGry);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00047}00047 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,27 @@
+\hypertarget{text_8h_source}{}\doxysection{text.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef TEXT\_H}}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00002}00002 \textcolor{preprocessor}{\#define TEXT\_H}}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00004}00004 \textcolor{preprocessor}{\#include <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00009}00009 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_WIDTH;}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00010}00010 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_HEIGHT;}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00012}\mbox{\hyperlink{structTekst}{00012}} \textcolor{keyword}{struct }\mbox{\hyperlink{structTekst}{Tekst}} \{}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00013}00013     \textcolor{keywordtype}{char} A[500];}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00014}00014     SDL\_Surface *teksSurface;}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00015}00015     SDL\_Rect Bounds;}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00016}00016     SDL\_Color tekstColor;}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00017}00017 \};}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00019}00019 \textcolor{keywordtype}{bool} tekstConstructor(\textcolor{keyword}{struct} \mbox{\hyperlink{structTekst}{Tekst}} *S, \textcolor{keywordtype}{char} A[], TTF\_Font *f);}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00020}00020 \textcolor{keywordtype}{void} tekstUpdate(\textcolor{keyword}{struct} \mbox{\hyperlink{structTekst}{Tekst}} *S, TTF\_Font *f, \textcolor{keywordtype}{int} pos);}
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{text_8h_source_l00022}00022 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,35 @@
+\hypertarget{pipe_8h_source}{}\doxysection{pipe.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef PIPE\_H}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00002}00002 \textcolor{preprocessor}{\#define PIPE\_H}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00004}00004 \textcolor{preprocessor}{\#include "{}bird.h"{}}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <SDL2/SDL\_rect.h>}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00011}00011 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_HEIGHT;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00012}00012 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_WIDTH;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00014}\mbox{\hyperlink{structPipe}{00014}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00015}00015     \textcolor{keywordtype}{int} topHeight;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00016}00016     \textcolor{keywordtype}{int} botHeight;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00017}00017     \textcolor{keywordtype}{int} free;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00018}00018     \textcolor{keywordtype}{int} self\_width;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00019}00019     \textcolor{keywordtype}{int} self\_height;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00020}00020     \textcolor{keywordtype}{double} self\_x;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00021}00021     \textcolor{keywordtype}{double} velocity;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00022}00022     SDL\_Rect topBounds;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00023}00023     SDL\_Rect botBounds;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00024}00024     \textcolor{keywordtype}{bool} isActive;}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00025}00025 \} \mbox{\hyperlink{structPipe}{Pipe}};}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00027}00027 \textcolor{keywordtype}{void} pipeConstructor(\mbox{\hyperlink{structPipe}{Pipe}} *p);}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00028}00028 \textcolor{keywordtype}{void} pipeUpdate(\mbox{\hyperlink{structPipe}{Pipe}} *p, \textcolor{keywordtype}{double} dt);}
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{pipe_8h_source_l00030}00030 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

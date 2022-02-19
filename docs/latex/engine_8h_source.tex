@@ -1,0 +1,66 @@
+\hypertarget{engine_8h_source}{}\doxysection{engine.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef ENGINE\_H}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00002}00002 \textcolor{preprocessor}{\#define ENGINE\_H}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00004}00004 \textcolor{preprocessor}{\#include "{}bird.h"{}}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}pipe.h"{}}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}text.h"{}}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <SDL2/SDL\_events.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00011}00011 \textcolor{preprocessor}{\#include <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00012}00012 \textcolor{preprocessor}{\#include <SDL2/SDL\_rect.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00013}00013 \textcolor{preprocessor}{\#include <SDL2/SDL\_render.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00014}00014 \textcolor{preprocessor}{\#include <SDL2/SDL\_surface.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00015}00015 \textcolor{preprocessor}{\#include <SDL2/SDL\_timer.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00016}00016 \textcolor{preprocessor}{\#include <SDL2/SDL\_video.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00017}00017 \textcolor{preprocessor}{\#include <SDL\_mixer.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00018}00018 \textcolor{preprocessor}{\#include <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00019}00019 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00020}00020 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00022}00022 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_WIDTH;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00023}00023 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} SCREEN\_HEIGHT;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00024}00024 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{int} noPipes;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00026}00026 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} game\_state\{}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00027}00027     START\_GAME,}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00028}00028     PLAYING,}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00029}00029     LOST\_GAME,}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00030}00030     QUIT\_GAME}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00031}00031 \} GAME\_STATE;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00033}\mbox{\hyperlink{structEngine}{00033}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00034}00034     \textcolor{keyword}{struct }\mbox{\hyperlink{structTekst}{Tekst}} *pismo;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00035}00035     SDL\_Texture *pipe\_texture;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00036}00036     SDL\_Texture *background\_pic;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00037}00037     SDL\_Renderer *renderer;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00038}00038     Mix\_Chunk *musicEffect;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00039}00039     Mix\_Music *sound;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00040}00040     TTF\_Font *mFont;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00041}00041     SDL\_Window *window;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00042}00042     GAME\_STATE state;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00043}00043     \mbox{\hyperlink{structBird}{Bird}} bird;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00044}00044     \mbox{\hyperlink{structPipe}{Pipe}} pipes[30];}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00045}00045     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} current\_time;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00046}00046     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} since\_time;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00047}00047     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} pipeGen\_time;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00048}00048     \textcolor{keywordtype}{int} pipe\_index;}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00049}00049 \} \mbox{\hyperlink{structEngine}{Engine}};}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00051}00051 \textcolor{keywordtype}{bool} collisionDetection(\mbox{\hyperlink{structBird}{Bird}} *b, \mbox{\hyperlink{structPipe}{Pipe}} *p);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00052}00052 \textcolor{keywordtype}{bool} loadMedia(\mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00053}00053 \textcolor{keywordtype}{bool} initGame(\mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00054}00054 \textcolor{keywordtype}{void} closeGame(\mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00055}00055 \textcolor{keywordtype}{void} input(\mbox{\hyperlink{structEngine}{Engine}} *e, SDL\_Event *event);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00056}00056 \textcolor{keywordtype}{void} updateGame(\mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00057}00057 \textcolor{keywordtype}{void} renderFrame(\mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00058}00058 \textcolor{keywordtype}{void} resetGame(\mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00059}00059 SDL\_Texture* loadTexture(\textcolor{keywordtype}{char} *path, \mbox{\hyperlink{structEngine}{Engine}} *e);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00061}00061 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

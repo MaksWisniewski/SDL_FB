@@ -1,0 +1,49 @@
+\hypertarget{pipe_8c_source}{}\doxysection{pipe.\+c}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00001}00001 \textcolor{preprocessor}{\#include "{}pipe.h"{}}}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00004}00004 \textcolor{keywordtype}{void} newPipe(\mbox{\hyperlink{structPipe}{Pipe}} *p) \{}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00005}00005     p-\/>self\_x = SCREEN\_WIDTH;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00006}00006     \textcolor{keywordtype}{int} d = rand()\%(SCREEN\_HEIGHT-\/200)+100;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00008}00008     p-\/>botHeight = SCREEN\_HEIGHT -\/ (d + p-\/>free / 2);}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00009}00009     p-\/>topHeight = d -\/ p-\/>free / 2;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00011}00011     p-\/>botBounds.x = p-\/>self\_x;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00012}00012     p-\/>botBounds.y = d + p-\/>free / 2;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00013}00013     p-\/>botBounds.w = p-\/>self\_width;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00014}00014     p-\/>botBounds.h = p-\/>self\_height;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00016}00016     p-\/>topBounds.x = p-\/>self\_x;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00017}00017     p-\/>topBounds.y = d -\/ p-\/>free / 2 -\/ p-\/>self\_height;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00018}00018     p-\/>topBounds.w = p-\/>self\_width;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00019}00019     p-\/>topBounds.h = p-\/>self\_height;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00020}00020 \}}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00022}00022 \textcolor{keywordtype}{void} pipeConstructor(\mbox{\hyperlink{structPipe}{Pipe}} *p) \{}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00023}00023     p-\/>self\_width = 70;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00024}00024     p-\/>self\_height = 300;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00025}00025     p-\/>velocity = 120;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00026}00026     p-\/>isActive = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00027}00027     p-\/>free = 200;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00029}00029     newPipe(p);}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00030}00030 \}}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00032}00032 \textcolor{keywordtype}{void} pipeUpdate(\mbox{\hyperlink{structPipe}{Pipe}} *p, \textcolor{keywordtype}{double} dt) \{}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00033}00033     \textcolor{keywordflow}{if}(p-\/>isActive == \textcolor{keyword}{false})    \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00035}00035     p-\/>self\_x -\/= p-\/>velocity * dt;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00036}00036     }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00037}00037     p-\/>topBounds.x = p-\/>self\_x;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00038}00038     p-\/>botBounds.x = p-\/>self\_x;}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00040}00040     \textcolor{keywordflow}{if}(p-\/>self\_x + p-\/>self\_width < 0) \{}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00041}00041         p-\/>isActive = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00042}00042         newPipe(p);}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00043}00043     \}}
+\DoxyCodeLine{\Hypertarget{pipe_8c_source_l00044}00044 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,152 @@
+\hypertarget{stary__main_8c_source}{}\doxysection{stary\+\_\+main.\+c}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00001}00001 \textcolor{preprocessor}{\#include <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00003}00003 \textcolor{preprocessor}{\#include <SDL2/SDL\_rect.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00004}00004 \textcolor{preprocessor}{\#include <SDL2/SDL\_surface.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00005}00005 \textcolor{preprocessor}{\#include <SDL2/SDL\_timer.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00006}00006 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00007}00007 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00009}00009 \textcolor{preprocessor}{\#include "{}bird.h"{}}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00011}00011 \textcolor{keyword}{const} \textcolor{keywordtype}{int} WIDTH = 1280;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00012}00012 \textcolor{keyword}{const} \textcolor{keywordtype}{int} HEIGHT = 720;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00014}00014 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} *argv[]) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00015}00015   \textcolor{comment}{// Declare a pointer}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00016}00016   SDL\_Window *window;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00018}00018   SDL\_Init(SDL\_INIT\_VIDEO |}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00019}00019            SDL\_INIT\_TIMER); \textcolor{comment}{// Initialize SDL2, graphics and timer system}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00021}00021   \mbox{\hyperlink{structBird}{Bird}} *ptaszek;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00022}00022   birdConstructor(ptaszek);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00024}00024   \textcolor{comment}{// structure containg metadata bout background}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00025}00025   SDL\_Rect background\_rect;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00026}00026   background\_rect.x = 0;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00027}00027   background\_rect.y = 0;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00028}00028   background\_rect.w = WIDTH;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00029}00029   background\_rect.h = HEIGHT;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00031}00031   \textcolor{comment}{// structure containg metadata bout ground}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00032}00032   SDL\_Rect ground\_rect;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00033}00033   ground\_rect.x = 0;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00034}00034   ground\_rect.y = HEIGHT -\/ 40;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00035}00035   ground\_rect.w = WIDTH;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00036}00036   ground\_rect.h = 40;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00038}00038   SDL\_Rect bird\_rect = ptaszek-\/>bounds;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00040}00040   \textcolor{comment}{// Create an application window with the following settings:}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00041}00041   window = SDL\_CreateWindow(\textcolor{stringliteral}{"{}Flappy\_bird"{}},          \textcolor{comment}{// window title}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00042}00042                             SDL\_WINDOWPOS\_CENTERED, \textcolor{comment}{// initial x position}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00043}00043                             SDL\_WINDOWPOS\_CENTERED, \textcolor{comment}{// initial y position}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00044}00044                             WIDTH,                  \textcolor{comment}{// width, in pixels}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00045}00045                             HEIGHT,                 \textcolor{comment}{// height, in pixels}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00046}00046                             SDL\_WINDOW\_OPENGL       \textcolor{comment}{// flags -\/ see below}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00047}00047   );}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00049}00049   \textcolor{comment}{// Check that the window was successfully created}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00050}00050   \textcolor{keywordflow}{if} (window == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00051}00051     \textcolor{comment}{// In the case that the window could not be made...}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00052}00052     printf(\textcolor{stringliteral}{"{}Could not create window: \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00053}00053     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00054}00054   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00056}00056   \textcolor{comment}{// Create a renderer, which sets up the graphics and hardware}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00057}00057   Uint32 render\_flags = SDL\_RENDERER\_ACCELERATED | SDL\_RENDERER\_PRESENTVSYNC;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00058}00058   SDL\_Renderer *rend = SDL\_CreateRenderer(window, -\/1, render\_flags);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00059}00059   \textcolor{keywordflow}{if} (rend == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00060}00060     printf(\textcolor{stringliteral}{"{}error creating renderer: \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00061}00061     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00062}00062     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00063}00063     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00064}00064   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00067}00067   SDL\_Surface *surface\_background = IMG\_Load(\textcolor{stringliteral}{"{}img/background.png"{}});}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00068}00068   \textcolor{keywordflow}{if} (surface\_background == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00069}00069     printf(\textcolor{stringliteral}{"{}error creating surface \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00070}00070     SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00071}00071     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00072}00072     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00073}00073     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00074}00074   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00076}00076   SDL\_Surface *surface\_ground = IMG\_Load(\textcolor{stringliteral}{"{}img/ground.png"{}});}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00077}00077   \textcolor{keywordflow}{if} (surface\_ground == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00078}00078     printf(\textcolor{stringliteral}{"{}error creating surface \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00079}00079     SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00080}00080     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00081}00081     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00082}00082     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00083}00083   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00085}00085   SDL\_Surface *surface\_bird = IMG\_Load(\textcolor{stringliteral}{"{}img/bird.png"{}});}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00086}00086   \textcolor{keywordflow}{if} (surface\_ground == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00087}00087     printf(\textcolor{stringliteral}{"{}error creating surface \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00088}00088     SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00089}00089     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00090}00090     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00091}00091     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00092}00092   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00094}00094   \textcolor{comment}{// Load the image into the hardware's memory}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00095}00095   SDL\_Texture *tex\_background =}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00096}00096       SDL\_CreateTextureFromSurface(rend, surface\_background);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00097}00097   SDL\_FreeSurface(surface\_background);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00098}00098   \textcolor{keywordflow}{if} (tex\_background == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00099}00099     printf(\textcolor{stringliteral}{"{}error creating texuture \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00100}00100     SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00101}00101     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00102}00102     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00103}00103     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00104}00104   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00106}00106   SDL\_Texture *tex\_ground = SDL\_CreateTextureFromSurface(rend, surface\_ground);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00107}00107   SDL\_FreeSurface(surface\_ground);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00108}00108   \textcolor{keywordflow}{if} (tex\_ground == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00109}00109     printf(\textcolor{stringliteral}{"{}error creating texuture \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00110}00110     SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00111}00111     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00112}00112     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00113}00113     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00114}00114   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00116}00116   SDL\_Texture *tex\_bird = SDL\_CreateTextureFromSurface(rend, surface\_bird);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00117}00117   SDL\_FreeSurface(surface\_bird);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00118}00118   \textcolor{keywordflow}{if} (tex\_bird == NULL) \{}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00119}00119     printf(\textcolor{stringliteral}{"{}error creating texuture \%s\(\backslash\)n"{}}, SDL\_GetError());}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00120}00120     SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00121}00121     SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00122}00122     SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00123}00123     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00124}00124   \}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00126}00126   \textcolor{comment}{// Clear the windows}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00127}00127   SDL\_RenderClear(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00129}00129   \textcolor{comment}{// Draw the image to the window}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00130}00130   SDL\_RenderCopy(rend, tex\_background, NULL, \&background\_rect);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00131}00131   SDL\_RenderCopy(rend, tex\_ground, NULL, \&ground\_rect);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00132}00132   SDL\_RenderCopy(rend, tex\_bird, NULL, \&bird\_rect);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00133}00133   \textcolor{comment}{// Double buffering}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00134}00134   SDL\_RenderPresent(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00135}00135   \textcolor{comment}{// The window is open: could enter program loop here (see SDL\_PollEvent())}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00137}00137   SDL\_Delay(2000); \textcolor{comment}{// Pause execution for 3000 milliseconds, for example}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00138}00138 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00139}00139   \textcolor{comment}{// clean up resources before exitng}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00140}00140   SDL\_DestroyTexture(tex\_background);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00141}00141   SDL\_DestroyTexture(tex\_ground);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00142}00142   SDL\_DestroyRenderer(rend);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00143}00143   SDL\_DestroyWindow(window);}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00145}00145   \textcolor{comment}{// Clean up}}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00146}00146   SDL\_Quit();}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00147}00147   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{stary__main_8c_source_l00148}00148 \}}
+
+\end{DoxyCode}

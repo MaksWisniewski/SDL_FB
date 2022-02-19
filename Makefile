@@ -10,8 +10,10 @@ L_FLAGS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
 bird.o : bird.c bird.h
 	$(CC) bird.c $(C_FLAGS) $(L_FLAGS) -c -o bird.o
 
+text.o : text.c text.h
+	$(CC) text.c $(C_FLAGS) $(L_FLAGS) -c -o text.o
+
 pipe.o : pipe.c pipe.h
-	$(CC) pipe.c $(C_FLAGS) $(L_FLAGS) -c -o pipe.o
 
 engine.o : engine.c engine.h bird.c bird.h pipe.c pipe.h
 	$(CC) engine.c $(C_FLAGS) $(L_FLAGS) -c -o engine.o

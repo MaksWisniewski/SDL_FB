@@ -81,9 +81,8 @@ bool initGame(Engine *e) {
 
     SDL_SetRenderDrawColor(e->renderer, 0x00, 0x00, 0x00, 0x00);
     
-    struct Tekst *pismo;
-    tekstConstructor(pismo, "nacisnij enter aby rozpaczac", e->mFont);
-    tekstUpdate(pismo, e->mFont, SCREEN_WIDTH/2);
+    //tekstConstructor(e->pismo, "nacisnij enter aby rozpaczac", e->mFont);
+    //tekstUpdate(e->pismo, e->mFont, SCREEN_WIDTH/2);
     SDL_Delay(100);
 
     for(int i = 0; i < noPipes; i++) {

@@ -3,6 +3,8 @@
 
 #include "bird.h"
 #include "pipe.h"
+#include "text.h"
+
 #include <math.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL.h>
@@ -29,6 +31,7 @@ typedef enum game_state{
 } GAME_STATE;
 
 typedef struct {
+    struct Tekst *pismo;
     SDL_Texture *pipe_texture;
     SDL_Texture *background_pic;
     SDL_Renderer *renderer;

@@ -6,9 +6,9 @@ void birdConstructor(Bird *x) {
     x->self_x = x->Bounds.x = SCREEN_WIDTH / 3;
     x->self_y = x->Bounds.y = SCREEN_HEIGHT / 2;
 
-    x->gravity = 10;
+    x->gravity = 15;
     x->velocity = 0;
-    x->lift = -350;
+    x->lift = -450;
     x->time_sinceJump = 0;
     x->isJump = false;
 }

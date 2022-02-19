@@ -32,6 +32,7 @@ typedef struct {
     SDL_Texture *background_pic;
     SDL_Renderer *renderer;
     Mix_Chunk *musicEffect;
+    Mix_Music *sound;
     SDL_Window *window;
     GAME_STATE state;
     Bird bird;

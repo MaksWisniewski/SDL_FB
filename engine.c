@@ -39,10 +39,11 @@ bool initGame(Engine *e) {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO); 
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
+    e->sound = Mix_LoadMUS("sounds/sound.mp3");
     e->musicEffect = Mix_LoadWAV("sounds/death_sound.ogg");
     e->window = SDL_CreateWindow("Flappy bird", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
     SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
-    
+    Mix_PlayMusic(e->sound, -1);
     if(e->window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return false;
@@ -182,7 +183,9 @@ void closeGame(Engine *e) {
     SDL_DestroyWindow(e->window);
 
     Mix_FreeChunk(e->musicEffect);
+    Mix_FreeMusic(e->sound);
     IMG_Quit();
+    Mix_CloseAudio();
     SDL_Quit();
 }
 

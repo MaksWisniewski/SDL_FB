@@ -1,11 +1,14 @@
 # SDL_FB
 
+* Implementacja poplarnej gry flappy bird w jezyku c *
+ 
+ Aby uruchomić grę: 
+ ```bash
+ make all
+ ./game
+ ```
+ Aby rozpocząć grę wciśnij enter, następnie spację.
 
-### Compile
-```bash
-make all
-./game  /// in order to play user need to press enter and wait few seconds
-```
 ### Arch install
 ```bash
 sudo pacman -S sdl2 sdl2_image sdl2_mixer sdl2_gfx sdl2_net sdl2_ttf

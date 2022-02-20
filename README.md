@@ -1,7 +1,7 @@
 # SDL_FB
 
-* link do dokumentacji:
-    * [Dokumentacja](https://hackmd.io/@Oem6_SikRyyd7TnX_kPlOA/SDL_FB)
+##  [Dokumentacja](https://hackmd.io/@Oem6_SikRyyd7TnX_kPlOA/SDL_FB)
+
 * Implementacja poplarnej gry flappy bird w jezyku c
  
  Aby uruchomić grę: 
